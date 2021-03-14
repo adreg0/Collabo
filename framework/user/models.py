@@ -6,7 +6,7 @@ class User(AbstractUser):
     
     id = models.BigAutoField(primary_key=True, null=False)
     # email address of the organization
-    email = models.EmailField(unique=True, null=True, blank=False)
+    email = models.EmailField(unique=True, null=False, blank=False, default='')
     phone = models.CharField(max_length=15, blank=True, null=True)
     # varchar(255), Organization's name
     first_name = models.CharField(max_length=255, default='', blank=False, verbose_name='First Name/Org Name')
