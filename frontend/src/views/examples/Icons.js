@@ -18,6 +18,7 @@
 import React, { useState } from "react";
 // react component that copies the given text inside your clipboard
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import repos from "../../repos.json"
 // reactstrap components
 import {
   Card,
@@ -34,6 +35,7 @@ import Header from "components/Headers/Header.js";
 const Icons = () => {
   const [copiedText, setCopiedText] = useState();
   return (
+    
     <>
       <Header />
       {/* Page content */}
@@ -47,22 +49,27 @@ const Icons = () => {
               </CardHeader>
               <CardBody>
                 <Row className="icon-examples">
-                  <Col lg="3" md="6">
-                      <button
-                        className="btn-icon-clipboard"
-                        type="button"
-                        onClick={()=>{
-                          window.open("https://github.com/amFOSS","_blank").focus()
-                        }}
-                      >
-                        <div>
-                          <i className="ni ni-active-40" />
-                          <span>amFOSS</span>
-                        </div>
-                      </button>
-                    
-                  </Col>
-                  
+                {repos.map((object, i) => 
+                
+                <Col lg="3" md="6">
+                <button
+                  className="btn-icon-clipboard"
+                  type="button"
+                  onClick={()=>{
+                    window.open("https://github.com/amFOSS/"+object,"_blank").focus()
+                  }}
+                >
+                  <div>
+                    <i className="ni ni-active-40" />
+                    <span>{object}</span>
+                  </div>
+                </button>
+              
+                </Col>
+                
+                )}
+             
+                
                 </Row>
               </CardBody>
             </Card>
