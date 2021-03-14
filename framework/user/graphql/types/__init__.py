@@ -38,7 +38,7 @@ class UserBasicObj(
             return self.motives   
     def resolve_tech(self, info):
         if isinstance(self, User):
-            return self.tech_stack  
+            return self.tech 
     def resolve_org_url(self, info):
         if isinstance(self, User):
             return self.org_url   

@@ -22,8 +22,8 @@ import icon1 from "../../assets/img/icons/common/amfoss.png";
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 
 const Header = () => {
-  const [data, setData] = useState([]);
-  function fetchData() {
+  const [user, setUser] = useState([]);
+  function fetchUser() {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -34,13 +34,13 @@ const Header = () => {
 
     fetch("http://127.0.0.1:8000/graphql", requestOptions)
       .then((response) => response.json())
-      .then((data) => setData(data["data"]["users"]));
+      .then((user) => setUser(user?.users));
   }
   useEffect(() => {
-    fetchData();
+    fetchUser();
   }, []);
 
-  console.log(data);
+  console.log(user);
 
   return (
     <>
@@ -54,7 +54,15 @@ const Header = () => {
                   <CardBody>
                     <Row>
                       <div className="col">
-                        <span className="h2 font-weight-bold mb-0">amFOSS</span>
+                        <span className="h2 font-weight-bold mb-0">
+                          {user.firstName}
+                        </span>
+                      </div>
+                      <div className="col">
+                        <span className="h2 font-weight-bold mb-0">amfOSS</span>
+                      </div>
+                      <div className="col">
+                        <span className="h2 font-weight-bold mb-0">amfOSS</span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-danger text-white rounded-circle shadow">
