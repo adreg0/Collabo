@@ -15,13 +15,33 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import icon1 from "../../assets/img/icons/common/amfoss.png";
 
 // reactstrap components
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 
 const Header = () => {
+  const [data, setData] = useState([]);
+  function fetchData() {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+
+      body:
+        '{"query": "{users{id, email, firstName, lastName, tech, orgUrl, projects, status}}"}',
+    };
+
+    fetch("http://127.0.0.1:8000/graphql", requestOptions)
+      .then((response) => response.json())
+      .then((data) => setData(data["data"]["users"]));
+  }
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  console.log(data);
+
   return (
     <>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
@@ -34,13 +54,14 @@ const Header = () => {
                   <CardBody>
                     <Row>
                       <div className="col">
-                        <span className="h2 font-weight-bold mb-0">
-                          amFOSS
-                        </span>
+                        <span className="h2 font-weight-bold mb-0">amFOSS</span>
                       </div>
                       <Col className="col-auto">
-                        <div className="icon icon-shape bg-danger text-white rounded-circle shadow" >
-                          <img src={icon1} style={{"height":"50px","width":"50px"}}  />
+                        <div className="icon icon-shape bg-danger text-white rounded-circle shadow">
+                          <img
+                            src={icon1}
+                            style={{ height: "50px", width: "50px" }}
+                          />
                         </div>
                       </Col>
                     </Row>
