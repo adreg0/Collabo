@@ -6,7 +6,7 @@ class UserBasicObj(
     description='the user type'
 ):
     id = graphene.ID() 
-    email = graphene.email()
+    email = graphene.String()
     phone = graphene.String()
     first_name = graphene.String()
     last_name = graphene.String()
@@ -17,7 +17,7 @@ class UserBasicObj(
     status = graphene.String()
     city = graphene.String()
 
-    
+
     def resolve_id(self, info):
         if isinstance(self, User):
             return self.id
