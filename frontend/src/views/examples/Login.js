@@ -16,7 +16,7 @@
 
 */
 import React from "react";
-
+import { Link } from "react-router-dom";
 // reactstrap components
 import {
   Button,
@@ -126,9 +126,10 @@ const Login = () => {
                 </label>
               </div>
               <div className="text-center">
-                <Button className="my-4" color="primary" type="button">
-                  Sign in
-                </Button>
+              <Link className="nav-link-icon" to="/admin/icons" tag={Link}>
+                  <i className="ni ni-key-25" />
+                  <span className="nav-link-inner--text">Sign In</span>
+                </Link>
               </div>
             </Form>
           </CardBody>
